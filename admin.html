@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100e">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Avoska — Адмін-панель</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    /* Гарантовано ховаємо екрани — навіть якщо CSS не завантажився */
+    #loginScreen[hidden], #adminApp[hidden], #orderDetail[hidden], #loginError[hidden] {
+      display: none !important;
+    }
+    #adminApp { display: none; }
+    #adminApp.is-open { display: flex; flex-direction: column; min-height: 100vh; }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="noise"></div>
+
+  <div class="admin-login" id="loginScreen">
+    <div class="login-card">
+      <div class="login-brand">
+        <span class="brand-mark">A<span>✳</span></span>
+        <div>
+          <strong>AVOSKA</strong>
+          <small>Адмін-панель замовлень</small>
+        </div>
+      </div>
+      <form id="loginForm" action="#" method="post">
+        <label class="field">
+          <span>Логін / Email</span>
+          <input type="text" name="login" id="loginInput" required autocomplete="username" placeholder="admin" value="">
+        </label>
+        <label class="field">
+          <span>Пароль</span>
+          <input type="password" name="password" id="passwordInput" required autocomplete="current-password" placeholder="••••••••" value="">
+        </label>
+        <p class="login-error" id="loginError" hidden></p>
+        <button type="submit" class="btn btn-primary login-btn" id="loginBtn">Увійти</button>
+      </form>
+      <p class="login-hint" id="loginHint">Демо: логін <b>admin</b> · пароль <b>avoska2026</b></p>
+    </div>
+  </div>
+
+  <div class="admin-app" id="adminApp" hidden>
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <a class="brand" href="index.html"><span class="brand-mark">A<span>✳</span></span><span>AVOSKA<small>ADMIN</small></span></a>
+        <span class="mode-badge" id="modeBadge">demo</span>
+      </div>
+      <div class="admin-header-right">
+        <span class="admin-user" id="adminUser"></span>
+        <button type="button" class="btn-ghost" id="logoutBtn">Вийти</button>
+      </div>
+    </header>
+
+    <div class="admin-toolbar">
+      <div class="admin-stats" id="adminStats">
+        <div class="stat"><b id="statNew">0</b><span>Нові</span></div>
+        <div class="stat"><b id="statActive">0</b><span>В роботі</span></div>
+        <div class="stat"><b id="statDone">0</b><span>Готові</span></div>
+        <div class="stat"><b id="statAll">0</b><span>Усього</span></div>
+      </div>
+      <div class="admin-filters">
+        <button type="button" class="af active" data-status="all">Усі</button>
+        <button type="button" class="af" data-status="new">Нові</button>
+        <button type="button" class="af" data-status="calling">Дзвонимо</button>
+        <button type="button" class="af" data-status="confirmed">Підтверджено</button>
+        <button type="button" class="af" data-status="done">Виконано</button>
+        <button type="button" class="af" data-status="cancelled">Скасовано</button>
+      </div>
+    </div>
+
+    <main class="admin-main no-detail" id="adminMain">
+      <div class="orders-list" id="ordersList">
+        <p class="orders-empty">Замовлень поки немає</p>
+      </div>
+      <aside class="order-detail" id="orderDetail" hidden>
+        <div class="detail-head">
+          <h2 id="detailTitle">Замовлення</h2>
+          <button type="button" class="detail-close" id="detailClose" aria-label="Закрити">×</button>
+        </div>
+        <div class="detail-body" id="detailBody"></div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Без Firebase CDN — працює офлайн. Firebase підвантажиться лише якщо увімкнено в конфігу. -->
+  <script src="firebase-config.js"></script>
+  <script src="orders-api.js"></script>
+  <script src="admin.js"></script>
+  <script>
+  (function () {
+    var btn = document.getElementById('loginBtn');
+    var form = document.getElementById('loginForm');
+    if (!btn || !form) return;
+
+    function doLogin(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+
+      var loginEl = document.getElementById('loginInput');
+      var passEl = document.getElementById('passwordInput');
+      var err = document.getElementById('loginError');
+      var login = (loginEl && loginEl.value || '').trim();
+      var password = (passEl && passEl.value || '');
+
+      function showErr(msg) {
+        if (err) {
+          err.textContent = msg;
+          err.hidden = false;
+          err.style.display = 'block';
+        } else {
+          alert(msg);
+        }
+      }
+
+      function openApp(userLabel) {
+        var screen = document.getElementById('loginScreen');
+        var app = document.getElementById('adminApp');
+        if (screen) { screen.hidden = true; screen.style.display = 'none'; }
+        if (app) {
+          app.hidden = false;
+          app.classList.add('is-open');
+          app.style.display = 'flex';
+          app.style.flexDirection = 'column';
+          app.style.minHeight = '100vh';
+        }
+        var u = document.getElementById('adminUser');
+        if (u) u.textContent = userLabel || 'admin';
+        if (err) { err.hidden = true; err.style.display = 'none'; }
+        if (typeof window.__avoskaAfterLogin === 'function') {
+          try { window.__avoskaAfterLogin({ login: userLabel || 'admin' }); } catch (x) {}
+        }
+      }
+
+      if (!login || !password) {
+        showErr('Введи логін і пароль');
+        return false;
+      }
+
+      var demoLogin = 'admin';
+      var demoPass = 'avoska2026';
+      try {
+        if (typeof DEMO_ADMIN !== 'undefined') {
+          if (DEMO_ADMIN.login) demoLogin = String(DEMO_ADMIN.login);
+          if (DEMO_ADMIN.password) demoPass = String(DEMO_ADMIN.password);
+        }
+      } catch (x) {}
+
+      // Async path via API
+      if (typeof OrdersAPI !== 'undefined') {
+        Promise.resolve()
+          .then(function () { return OrdersAPI.init(); })
+          .then(function () { return OrdersAPI.login(login, password); })
+          .then(function (user) {
+            openApp((user && (user.email || user.login)) || login);
+          })
+          .catch(function (ex) {
+            // fallback demo check
+            if (login.toLowerCase() === demoLogin.toLowerCase() && password === demoPass) {
+              openApp(demoLogin);
+            } else {
+              showErr((ex && ex.message) || 'Невірний логін або пароль');
+            }
+          });
+        return false;
+      }
+
+      // Pure demo without API
+      if (login.toLowerCase() === demoLogin.toLowerCase() && password === demoPass) {
+        try {
+          sessionStorage.setItem('avoska_admin_session', JSON.stringify({ login: demoLogin, at: Date.now() }));
+        } catch (x) {}
+        openApp(demoLogin);
+      } else {
+        showErr('Невірний логін або пароль. Спробуй admin / avoska2026');
+      }
+      return false;
+    }
+
+    btn.addEventListener('click', doLogin);
+    form.addEventListener('submit', doLogin);
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100e">
+  <meta name="description" content="Pizza&Sushi Avoska — піца, суші та роли у Ярмолинцях. Обирайте улюблене та замовляйте телефоном або онлайн.">
+  <title>Avoska — піца, суші та настрій</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="header">
+    <a class="brand" href="#home" aria-label="Avoska — на головну"><span class="brand-mark">A<span>✳</span></span><span>AVOSKA<small>PIZZA & SUSHI</small></span></a>
+    <nav class="nav">
+      <a href="#menu">Меню</a>
+      <a href="#about">Про нас</a>
+      <a href="#contacts">Контакти</a>
+      <a href="#cart" class="nav-cart-link">Кошик <span class="nav-cart-badge" id="navCartBadge" hidden>0</span></a>
+    </nav>
+    <div class="header-right">
+      <a class="cart-btn header-cart" href="#cart" id="headerCartBtn" aria-label="Кошик">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6L5 3H2"/></svg>
+        <span class="cart-count" id="cartCount" data-empty="1"></span>
+      </a>
+      <a class="header-order" href="tel:+380969449971">Замовити <span>↗</span></a>
+    </div>
+    <button class="menu-toggle" aria-label="Відкрити меню" type="button">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><i></i> ЯРМОЛИНЦІ · ГОТУЄМО З ЛЮБОВ’Ю</div>
+        <h1 class="hero-title">ТВОЯ<br>СМАЧНА<br><em>АВОСЬКА</em></h1>
+        <p class="hero-lead">Коли хочеться чогось особливого — обирай піцу, суші та роли, які створюють настрій.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#menu">Обрати страву <span>↗</span></a>
+          <a class="text-link" href="#about">Більше про нас <span>↓</span></a>
+        </div>
+        <div class="hero-note"><span class="note-icon">✳</span><span><b>Свіжо. Щедро. Смачно.</b><small>Твій привід зібратись разом</small></span></div>
+      </div>
+      <div class="hero-art" aria-label="Піца та суші">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="floating-tag tag-top">MADE WITH ♥</div>
+        <div class="food-disc"><div class="food-image"></div></div>
+        <div class="sushi-float">🍣</div><div class="pepper pepper-one">✳</div><div class="pepper pepper-two">✦</div>
+        <div class="floating-tag tag-bottom">ТВОЯ АВОСЬКА</div>
+        <div class="hero-shadow"></div>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-social">
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">Instagram ↗</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook">Facebook ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Асортимент">
+      <div class="ticker-track">
+        <span>ПІЦА</span> ✳ <span>СУШІ</span> ✳ <span>РОЛИ</span> ✳ <span>СМАКУЙ МОМЕНТ</span> ✳
+        <span>ПІЦА</span> ✳ <span>СУШІ</span> ✳ <span>РОЛИ</span> ✳ <span>СМАКУЙ МОМЕНТ</span> ✳
+        <span>ПІЦА</span> ✳ <span>СУШІ</span> ✳ <span>РОЛИ</span> ✳ <span>СМАКУЙ МОМЕНТ</span> ✳
+        <span>ПІЦА</span> ✳ <span>СУШІ</span> ✳ <span>РОЛИ</span> ✳ <span>СМАКУЙ МОМЕНТ</span> ✳
+      </div>
+    </section>
+
+    <section class="menu-section section" id="menu">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow"><i></i> ЩО СЬОГОДНІ СМАКУЄ?</div>
+          <h2>МЕНЮ, ЯКЕ<br><em>ЗАКОХУЄ.</em></h2>
+        </div>
+        <p>Обирай настрій — ми подбаємо про смак. Додай улюблене до кошика та оформи замовлення онлайн або зателефонуй.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Категорії меню">
+        <button class="filter active" data-filter="all" type="button">Усе меню</button>
+        <button class="filter" data-filter="pizza" type="button">Піца</button>
+        <button class="filter" data-filter="sushi" type="button">Суші та роли</button>
+        <button class="filter" data-filter="sets" type="button">Сети</button>
+        <button class="filter" data-filter="shawarma" type="button">Шаурма</button>
+        <button class="filter" data-filter="extras" type="button">Додатки</button>
+      </div>
+      <label class="menu-search"><span>⌕</span><input id="menuSearch" type="search" placeholder="Знайти страву або інгредієнт…" aria-label="Пошук у меню"></label>
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-category="pizza">
+          <div class="product-photo photo-pizza">
+            <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=85" alt="Піца фірмова" onerror="this.style.display='none'">
+            <span class="product-badge">ХІТ</span>
+            <button class="add-btn" type="button" data-name="Піца фірмова" data-price="220">+</button>
+          </div>
+          <div class="product-info"><div><h3>Піца фірмова</h3><p>Тонке тісто · багато начинки</p></div><b>220 грн</b></div>
+        </article>
+        <article class="product-card" data-category="sushi">
+          <div class="product-photo photo-sushi">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=85" alt="Роли Філадельфія">
+            <button class="add-btn" type="button" data-name="Роли Філадельфія" data-price="190">+</button>
+          </div>
+          <div class="product-info"><div><h3>Роли Філадельфія</h3><p>Ніжний смак у кожному шматочку</p></div><b>190 грн</b></div>
+        </article>
+        <article class="product-card" data-category="sets">
+          <div class="product-photo photo-set">
+            <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=900&q=85" alt="Суші-сет">
+            <span class="product-badge">ДЛЯ КОМПАНІЇ</span>
+            <button class="add-btn" type="button" data-name="Суші-сет" data-price="450">+</button>
+          </div>
+          <div class="product-info"><div><h3>Суші-сет</h3><p>Ідеально, щоб ділитися</p></div><b>450 грн</b></div>
+        </article>
+        <article class="product-card" data-category="pizza">
+          <div class="product-photo photo-pizza2">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=85" alt="Піца сирна">
+            <button class="add-btn" type="button" data-name="Піца сирна" data-price="200">+</button>
+          </div>
+          <div class="product-info"><div><h3>Піца сирна</h3><p>Тягучий сир та хрумка скоринка</p></div><b>200 грн</b></div>
+        </article>
+        <article class="product-card" data-category="sushi">
+          <div class="product-photo photo-roll">
+            <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=900&q=85" alt="Роли асорті">
+            <button class="add-btn" type="button" data-name="Роли асорті" data-price="180">+</button>
+          </div>
+          <div class="product-info"><div><h3>Роли асорті</h3><p>Різноманіття улюблених смаків</p></div><b>180 грн</b></div>
+        </article>
+        <article class="product-card" data-category="sets">
+          <div class="product-photo photo-set2">
+            <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=900&q=85" alt="Сет для друзів">
+            <button class="add-btn" type="button" data-name="Сет для друзів" data-price="520">+</button>
+          </div>
+          <div class="product-info"><div><h3>Сет для друзів</h3><p>Більше смаку для гарної компанії</p></div><b>520 грн</b></div>
+        </article>
+      </div>
+      <p class="menu-disclaimer">Склад і ціни взяті зі скриншотів меню. Фото ілюстративні, це не фото конкретних страв Avoska. Ціну сирного бортика уточнить менеджер.</p>
+    </section>
+
+    <section class="feature section" id="about">
+      <div class="feature-image">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=85" alt="Затишний заклад">
+        <div class="round-stamp">AVOSKA<br>GOOD FOOD<br>GOOD MOOD ✳</div>
+      </div>
+      <div class="feature-copy">
+        <div class="eyebrow"><i></i> ТРОХИ ПРО НАС</div>
+        <h2>СМАКУЙ<br>СВОЄ <em>ЖИТТЯ.</em></h2>
+        <p>Pizza&Sushi Avoska — місце, де зустрічаються улюблені смаки. Обирай піцу, суші чи роли, збирай друзів і створюй свої маленькі смачні моменти.</p>
+        <div class="feature-stats">
+          <div><b>5.0<span>★</span></b><small>Оцінка гостей*</small></div>
+          <div><b>ЯРМОЛИНЦІ</b><small>Ми поруч</small></div>
+        </div>
+        <a class="text-link" href="#contacts">Знайти нас <span>↗</span></a>
+        <small class="rating-note">* Рейтинг із відкритого профілю Google, може змінюватися.</small>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-orb">🍕</div>
+      <div class="eyebrow"><i></i> ГОЛОДНИЙ? МИ ВЖЕ ГОТУЄМО</div>
+      <h2>ЗРОБИ ЦЕЙ<br>ДЕНЬ <em>СМАЧНИМ.</em></h2>
+      <a class="btn btn-light" href="#cart">Перейти в кошик <span>↗</span></a>
+    </section>
+
+    <!-- FULL CART PAGE -->
+    <section class="cart-page section" id="cart">
+      <div class="section-head cart-page-head">
+        <div>
+          <div class="eyebrow"><i></i> ТВОЄ ЗАМОВЛЕННЯ</div>
+          <h2>КОШИК <em>AVOSKA.</em></h2>
+        </div>
+        <a class="text-link" href="#menu">← Повернутись до меню</a>
+      </div>
+
+      <div class="cart-layout" id="cartLayout">
+        <div class="cart-list-panel">
+          <div class="cart-items" id="cartItems">
+            <p class="cart-empty">Кошик порожній. <a href="#menu">Обери страви в меню</a></p>
+          </div>
+        </div>
+
+        <div class="cart-checkout-panel">
+          <div class="cart-summary">
+            <div class="cart-total-row">
+              <span>Разом</span>
+              <b id="cartTotal">0 грн</b>
+            </div>
+            <p class="cart-total-note">Ціни орієнтовні. Фінальну суму підтвердить менеджер.</p>
+          </div>
+
+          <form class="checkout-form" id="checkoutForm">
+            <h3 class="checkout-title">Оформлення замовлення</h3>
+
+            <label class="field">
+              <span>Ім’я *</span>
+              <input type="text" name="name" required placeholder="Як до вас звертатись" autocomplete="name">
+            </label>
+            <label class="field">
+              <span>Телефон *</span>
+              <input type="tel" name="phone" required placeholder="+38 0XX XXX XX XX" autocomplete="tel">
+            </label>
+            <label class="field">
+              <span>Адреса / спосіб отримання</span>
+              <input type="text" name="address" placeholder="Самовивіз або адреса доставки">
+            </label>
+            <label class="field">
+              <span>Коментар</span>
+              <textarea name="comment" rows="2" placeholder="Час, побажання, алергії…"></textarea>
+            </label>
+
+            <fieldset class="pay-fieldset">
+              <legend>Спосіб оплати</legend>
+              <label class="pay-option">
+                <input type="radio" name="payment" value="cash" checked>
+                <span>Готівка при отриманні</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="payment" value="card_on_delivery">
+                <span>Картка при отриманні</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="payment" value="online">
+                <span>Онлайн-оплата <small>(менеджер надішле посилання)</small></span>
+              </label>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary checkout-submit" id="submitOrder">
+              Надіслати замовлення <span>↗</span>
+            </button>
+            <p class="checkout-hint">Замовлення потрапить в адмін-панель закладу. Персонал побачить його й перетелефонує для підтвердження. Додатково можна відкрити WhatsApp.</p>
+          </form>
+
+          <div class="order-success" id="orderSuccess" hidden>
+            <div class="success-icon">✓</div>
+            <h3>Замовлення надіслано!</h3>
+            <p>Замовлення збережено в системі закладу. Незабаром вам зателефонують для підтвердження.</p>
+            <a class="btn btn-primary" href="#menu">Повернутись до меню</a>
+            <a class="text-link" href="tel:+380969449971">Або зателефонувати зараз ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section section" id="contacts">
+      <div>
+        <div class="eyebrow"><i></i> ЗАВІТАЙ АБО ЗАТЕЛЕФОНУЙ</div>
+        <h2>МИ <em>НА ЗВ’ЯЗКУ.</em></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <small>АДРЕСА</small>
+          <b>вул. Шевченка,<br>Ярмолинці, 32100</b>
+          <a href="https://www.google.com/maps/search/?api=1&query=Pizza%26Sushi+Avoska+Yarmolyntsi" target="_blank" rel="noreferrer">Прокласти маршрут ↗</a>
+        </div>
+        <div class="contact-item">
+          <small>ТЕЛЕФОН</small>
+          <b>+38 096 944 99 71</b>
+          <a href="tel:+380969449971">Зателефонувати ↗</a>
+        </div>
+        <div class="contact-item">
+          <small>ГРАФІК РОБОТИ</small>
+          <b>Щодня<br>10:00 — 20:00</b>
+          <span>Графік із відкритого профілю</span>
+        </div>
+        <div class="contact-item social-item">
+          <small>СОЦМЕРЕЖІ</small>
+          <div class="social-links">
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" class="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#home"><span class="brand-mark">A<span>✳</span></span><span>AVOSKA<small>PIZZA & SUSHI</small></span></a>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <span>СМАК, ЯКИЙ ОБ’ЄДНУЄ.</span>
+    <span>© 2026 AVOSKA · <a href="admin.html" style="color:inherit;opacity:.5;text-decoration:none">Staff</a></span>
+  </footer>
+
+  <!-- Floating cart button (bottom-right) — shows when cart has items -->
+  <a href="#cart" class="fab-cart" id="fabCart" aria-label="Відкрити кошик" hidden>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6L5 3H2"/></svg>
+    <span class="fab-count" id="fabCount">0</span>
+  </a>
+
+  <div class="cart-toast" id="toast">Додано: <b id="toastName"></b></div>
+  <script src="firebase-config.js"></script>
+  <dialog class="product-dialog" id="productDialog"><form method="dialog" class="dialog-shell"><button class="dialog-close" aria-label="Закрити">×</button><div id="productDetails"></div><button type="button" class="btn btn-primary dialog-add" id="dialogAdd">Додати до кошика <span>↗</span></button></form></dialog>
+  <script src="catalog.js"></script>
+  <script src="orders-api.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
